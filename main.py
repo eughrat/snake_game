@@ -1,16 +1,24 @@
-# This is a sample Python script.
+from turtle import Screen, Turtle
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+screen = Screen()
+screen.setup(width=600, height=600)
+screen.bgcolor("black")
+screen.title("My Snake Game")
+
+x_coor = 0
+y_coor = 0
+
+for i in range(3):
+    new_snake = Turtle()
+    new_snake.penup()
+    new_snake.color("white")
+    new_snake.shape("square")
+    new_snake.setposition(x_coor,y_coor)
+    x_coor -= 20
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+screen.exitonclick()
