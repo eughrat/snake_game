@@ -1,5 +1,6 @@
 import time
 from turtle import Screen
+import datetime
 
 from food import Food
 from scoreboard import ScoreBoard
@@ -21,6 +22,13 @@ screen.onkey(snake.down, "Down")
 screen.onkey(snake.left, "Left")
 screen.onkey(snake.right, "Right")
 
+def write_to_score_sheet(score):
+    username = screen.textinput(title="Player Name", prompt="Please enter your name: ")
+    with open("score_sheet.txt", "a") as f:
+        f.write(f"\nname: {username},date: {datetime.datetime.now()}, score: {score}")
+
+
+
 game_is_on = True
 while game_is_on:
     screen.update()
@@ -37,13 +45,16 @@ while game_is_on:
     # DETECT COLLISION WITH BORDER
     if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
         snake.reset()
+        write_to_score_sheet(scoreboard.score)
         scoreboard.reset()
 
 #     DETECT COLLISION WITH SNAKE
     for segment in snake.segments[1:]:
         if snake.head.distance(segment) < 10:
             snake.reset()
+            write_to_score_sheet(scoreboard.score)
             scoreboard.reset()
+
 
 
 
